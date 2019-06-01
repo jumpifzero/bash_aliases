@@ -154,11 +154,18 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Consolas"
-                               :size 16
-                               :weight normal
-                               :width normal
-                               :powerline-scale 1.1)
+   dotspacemacs-default-font (cond ((eq system-type 'windows-nt)
+                                    '("Consolas"
+                                      :size 16
+                                      :weight normal
+                                      :width normal
+                                      :powerline-scale 1.1))
+                                   ((eq system-type 'gnu/linux)
+                                    '("Source Code Pro"
+                                      :size 24
+                                      :weight normal
+                                      :width normal
+                                      :powerline-scale 1.1))) 
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -334,7 +341,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (global-company-mode)
-  (dotimes (i 10)
+  (dotimes (i 5)
     (spacemacs/zoom-frm-in))
   (maximize-frame))
 
